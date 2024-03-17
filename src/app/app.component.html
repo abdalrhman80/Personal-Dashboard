@@ -1,0 +1,19 @@
+<app-options></app-options>
+
+<div class="dashboard position-absolute top-0 start-0 end-0 bottom-0">
+  <div class="container mt-4">
+    <div class="content d-flex flex-column justify-content-evenly ">
+      <header class="top-section px-4 pt-4 pt-md-0 text-white text-center ">
+        <h1>{{dateNow|date:'shortTime'}}</h1>
+        <h2>{{dateNow | date:'fullDate'}}</h2>
+      </header>
+
+      <section class="middle-section p-md-5 mb-5 text-white ">
+        <p-scrollPanel>
+          <router-outlet></router-outlet>
+        </p-scrollPanel>
+      </section>
+
+    </div>
+  </div>
+</div>

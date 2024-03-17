@@ -1,0 +1,62 @@
+<app-loader></app-loader>
+
+<figure #mainBG class="bg-main m-0 position-relative" [style.background]="imageColor">
+    <img [src]="imageSrc" alt="main-bg">
+</figure>
+
+<p-speedDial [model]="items" direction="right" [radius]="80" type="semi-circle"
+    [style]="{color: 'white', position: 'absolute', top: '50%', left: '0px'}" showIcon="fa-solid fa-bars"
+    hideIcon="fa-solid fa-xmark" buttonClassName="p-button-secondary" ariaLabel="Options">
+</p-speedDial>
+
+<p-dialog header="Gradient Colors" [(visible)]="visibleModel1" [modal]="true" [style]="{ width: '30rem' }"
+    [draggable]="false">
+    <ng-template pTemplate="header">
+        <h4 class="font-bold">Gradient Colors</h4>
+    </ng-template>
+
+    <ng-template pTemplate="content">
+        <p-scrollPanel [style]="{ width: '100%', height: '300px'}">
+            <div class="modal-content">
+                <div class="row gx-2 gy-3">
+                    <div class="col-6" *ngFor="let gradientColor of gradientColors">
+                        <button class="gradients rounded btn w-100" [style]="gradientColor"
+                            (click)="changeColor($event)"></button>
+                    </div>
+                </div>
+            </div>
+        </p-scrollPanel>
+    </ng-template>
+</p-dialog>
+
+<p-dialog header="Solid Colors" [(visible)]="visibleModel2" [modal]="true" [style]="{ width: '30rem' }"
+    [draggable]="false">
+    <ng-template pTemplate="header">
+        <h4 class="font-bold">Solid Colors</h4>
+    </ng-template>
+
+    <ng-template pTemplate="content">
+        <p-scrollPanel [style]="{ width: '100%', height: '300px'}">
+            <div class="modal-content">
+                <div class="row gx-2 gy-3">
+                    <div class="col-6">
+                        <button class="colors pick-color rounded btn w-100" style="background: #939393;"
+                            (click)="op.toggle($event)">
+                            <i class="fa-solid fa-eye-dropper fs-5 text-white"></i>
+                        </button>
+                        <p-overlayPanel #op [baseZIndex]="1000">
+                            <ng-template pTemplate="content">
+                                <p-colorPicker [(ngModel)]="color" (onChange)="pickColor($event)"></p-colorPicker>
+                            </ng-template>
+                        </p-overlayPanel>
+                    </div>
+
+                    <div class="col-6" *ngFor="let solidColor of solidColors">
+                        <button class="colors rounded btn w-100" [style]="solidColor"
+                            (click)="changeColor($event)"></button>
+                    </div>
+                </div>
+            </div>
+        </p-scrollPanel>
+    </ng-template>
+</p-dialog>
